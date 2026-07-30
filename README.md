@@ -2,95 +2,16 @@
   <img src="https://i.ibb.co/ccZHLCR/Screenshot-from-2022-02-22-13-50-31.png" alt="dashboard" />
 </p>
 
-# Libernet
-Libernet is open source web app for tunneling internet using SSH, V2Ray, Trojan, Shadowsocks, OpenVPN on OpenWRT with ease.
+# Libernet Modern (PHP 8 Edition)
+Libernet is an open-source web app for tunneling internet using SSH, V2Ray, Trojan, Shadowsocks, and OpenVPN on OpenWrt with ease.
 
-## Requirements
-- bash
-- curl
-- screen
-- jq
-- Python 3
-- OpenSSH
-- sshpass
-- stunnel
-- V2Ray
-- Shadowsocks
-- go-tun2socks
-- badvpn-tun2socks (legacy)
-- dnsmasq
-- https-dns-proxy
-- php7
-- php7-cgi
-- php7-mod-session
-- php7-mod-json
-- httping
-- openvpn-openssl
+> **Note:** This repository is a modernized fork of [lutfailham96/libernet](https://github.com/lutfailham96/libernet) updated specifically to support **modern OpenWrt releases (22.03, 23.05, 24.10+)** using **PHP 8** without dependency clashes (such as `dnsmasq-full`).
 
-## Working Features:
-- SSH with proxy
-- SSH-SSL
-- SSH-WS-SSL (CDN)
-- V2Ray VMess
-- V2Ray VLESS
-- V2Ray Trojan
-- Trojan
-- Shadowsocks
-- OpenVPN
+---
 
-## Installation
-- If you don't have bash & curl on OpenWRT, please install first:
+## ⚡ Quick One-Line Installation
+
+Connect your OpenWrt router to the internet, open **SSH / Terminal**, and run:
+
 ```sh
-opkg update && opkg install bash curl
-```
-- Run installation script:
-```sh
-bash -c "$(curl -sko - 'https://raw.githubusercontent.com/lutfailham96/libernet/main/install.sh')"
-```
-- Reboot router, if necessary
-- Open Libernet on your browser: http://router-ip/libernet
-- Fill your tunnel server, save configuration & run Libernet
-
-## Updating
-- Just run updater script:
-```sh
-bash ~/Downloads/libernet/update.sh
-```
-- Updater script will updating Libernet to latest version
-
-## Fresh Install / Fresh Update
-- Remove Libernet installer directory
-```sh
-rm -rf ~/Downloads/libernet
-```
-- Run Libernet online installer
-```sh
-bash -c "$(curl -sko - 'https://raw.githubusercontent.com/lutfailham96/libernet/main/install.sh')"
-```
-- Latest version Libernet will be installed on your system
-
-## Installation Note
-Don't forget to always clear browser cache after installing or upgrading Libernet to prevent unwanted error.
-
-## Default Username & Password
-- Username: admin
-- Password: libernet
-
-## Dashboard Information
-- Tun2socks legacy
-  - check to use badvpn-tun2socks (tcp+udp)
-  - uncheck to use go-tun2socks (tcp only)
-- DNS resolver
-  - DNS over TLS (Adguard: ads blocker)
-- Ping loop
-  - looping ping based http connection over internet
-- Memory cleaner
-  - clean memory or ram cache every 1 hour
-- Auto start Libernet on boot
-
-<h4 align="left">If this project is useful for you, you can give me a cup of coffee :)</h4>
-<p>
-  <a href="https://paypal.me/lutfailham">
-      <img src="https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif" alt="paypal">
-  </a>
-</p>
+curl -sL [https://raw.githubusercontent.com/charudkelser/libernet/main/instal.sh](https://raw.githubusercontent.com/charudkelser/libernet/main/instal.sh) | sh
