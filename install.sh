@@ -4,14 +4,16 @@ echo "=========================================="
 echo "   Installing Libernet Modern (PHP 8)     "
 echo "=========================================="
 
-# 1. Update repo & install dependensi PHP 8 resmi OpenWrt
+# 1. Update repo & install dependensi PHP 8 resmi
 opkg update && opkg install php8 php8-cgi php8-mod-session php8-mod-curl php8-mod-mbstring php8-mod-fileinfo php8-mod-zip httping resolveip libxml2
 
 # 2. Download Libernet dari Repo Kamu & Atur Folder
-rm -rf /root/libernet /www/libernet /tmp/libernet.zip /tmp/libernet-main
-curl -sL https://github.com/charudkelser/libernet/archive/refs/heads/main.zip -o /tmp/libernet.zip
+rm -rf /root/libernet /www/libernet /tmp/libernet.zip /tmp/libernet-*
+curl -sL https://github.com/charudkelser/libernet/archive/refs/heads/utama.zip -o /tmp/libernet.zip
 unzip -q /tmp/libernet.zip -d /tmp/
-mv /tmp/libernet-main /root/libernet
+
+# Pindahkan dari folder ekstrak (otomatis deteksi utama / main)
+mv /tmp/libernet-* /root/libernet 2>/dev/null
 
 cp -rf /root/libernet/system/libernet/* /root/libernet/ 2>/dev/null
 [ -d /root/libernet/system/bin ] && cp -rf /root/libernet/system/bin/* /usr/bin/
@@ -21,9 +23,9 @@ ln -sf /root/libernet /www/libernet
 chmod -R 755 /root/libernet
 [ -f /usr/bin/libernet ] && chmod +x /usr/bin/libernet
 [ -f /etc/init.d/libernet ] && chmod +x /etc/init.d/libernet
-rm -rf /tmp/libernet.zip /tmp/libernet-main
+rm -rf /tmp/libernet.zip /tmp/libernet-*
 
-# 3. Setup Interface & Firewall Libernet (Fungsi Asli Dev)
+# 3. Setup Interface & Firewall Libernet
 if ! uci get network.libernet > /dev/null 2>&1; then
   echo "Mengonfigurasi firewall Libernet..."
   uci set network.libernet=interface
